@@ -50,11 +50,11 @@ The standout feature is its seamless **Spotify integration**. The app can curate
 
 | Login Screen | Main Analysis | Plan Display |
 | :---: |:---:|:---:|
-| ![Login Screen](URL_TO_LOGIN_SCREENSHOT.png) | ![Main Analysis Screen](URL_TO_ANALYSIS_SCREENSHOT.png) | ![Plan Display Screen](URL_TO_PLAN_SCREENSHOT.png) |
+| ![Login Screen](MoodI-images/logo.png) | ![Main Analysis Screen](MoodI-images/analysts.png) | ![Plan Display Screen](MoodI-images/aiagent.png) |
 
 | Mood Confirmation | Spotify Playlist Prompt |
 | :---: |:---:|
-| ![Mood Confirmation](URL_TO_CONFIRMATION_SCREENSHOT.png) | ![Spotify Prompt](URL_TO_SPOTIFY_PROMPT_SCREENSHOT.png) |
+| ![Mood Confirmation](MoodI-images/planner.png) | ![Spotify Prompt](MoodI-images/libtime.png) |
 
 ## 🛠️ Technology Stack
 
