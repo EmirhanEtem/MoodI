@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Moodİİ"
+        tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="face" />
+
+        <!-- ÖNEMLİ: OAuth callback için -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Moodİİ">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- SPOTIFY CALLBACK İÇİN INTENT FILTER -->
+            <intent-filter android:label="spotify_auth_callback">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- TODO: Bu değerleri SpotifyAuthHelper ve Spotify Developer Dashboard ile eşleştirin -->
+                <data android:scheme="com.example.mood" android:host="spotify-login-callback"/>
+            </intent-filter>
+            <!-- SPOTIFY CALLBACK İÇİN INTENT FILTER BİTİŞİ -->
+
+        </activity>
+
+        <!-- AppAuth'un Custom Tab'lerini kullanabilmesi için (isteğe bağlı ama önerilir) -->
+        <activity
+            android:name="net.openid.appauth.RedirectUriReceiverActivity"
+            android:exported="true"
+            tools:node="replace">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="${applicationId}"/>
+                <!-- veya manifestPlaceholders ile build.gradle'dan gelen bir scheme -->
+                <!-- <data android:scheme="${appAuthRedirectScheme}" /> -->
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
