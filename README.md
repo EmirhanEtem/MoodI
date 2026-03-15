@@ -58,10 +58,18 @@ Kullanıcının kameradan alınan anlık görüntüsü, **Google ML Kit Face Det
 * **Algoritma Mantığı:** Görüntü, sinir ağları (CNN) tabanlı bir Cascade sınıflandırıcıdan geçirilir. Model, yüzdeki 43 farklı nirengi noktasını (landmark) tespit eder.
 * **Duygu Vektörizasyonu:** Göz açıklık oranları (`leftEyeOpenProbability`, `rightEyeOpenProbability`) kullanıcının yorgunluk/uyku halini belirlerken, gülümseme olasılığı (`smilingProbability`) doğrudan *Valans (Valence)* değerini hesaplamada kullanılır. Bu iki parametre matrisi, kullanıcının "Enerjik", "Sakin", "Hüzünlü" veya "Stresli" olarak sınıflandırılmasını sağlar.
 
-### 2. Akustik Sinyal İşleme (Ses Tonu Analizi)
-Sistem, kullanıcının okuduğu rastgele bir metin sırasındaki ses verisini mikrofon üzerinden (PCM Formatında) saniyede yüzlerce kez örnekler (Sampling) ve sinyal işleme algoritmalarından geçirir.
-* **RMS (Root Mean Square) Enerji Hesabı:** Sesi oluşturan sinyalin gücünü bulmak için, zaman alanındaki genliklerin karelerinin ortalamasının karekökü alınır. Yüksek RMS, yüksek *Arousal (Uyarılmışlık)* anlamına gelir.
-* **Sıfır Geçiş Oranı (ZCR - Zero-Crossing Rate):** Sinyalin zaman ekseninde sıfır (0) noktasını kesme sıklığını hesaplar. Yüksek frekanslı (tiz ve gergin) sesleri saptamak için proxy bir değer olarak kullanılır ve kullanıcının stres seviyesine yönelik tahminleme (*Heuristic Estimation*) yapar.
+### 2. Akustik Sinyal İşleme ve Ses Tonu Modeli Eğitimi
+Sistem, kullanıcının okuduğu rastgele bir metin sırasındaki ses verisini mikrofon üzerinden (PCM Formatında 44.1kHz hızında) saniyede on binlerce kez örnekler (Sampling) ve sinyal işleme algoritmalarından geçirir. Kendi otonom ses analizi modelimiz, bulut tabanlı derin öğrenme modellerinin mobil cihazlarda yarattığı gecikmeyi (latency) ve gizlilik (privacy) ihlallerini önlemek amacıyla uç cihazda (edge-device) **Heuristic Feature Extraction (Buluşsal Öznitelik Çıkarımı)** ve algoritmik kalibrasyon standartlarıyla eğitilmiştir.
+
+* **Öznitelik Çıkarımı (Feature Extraction):**
+  * **RMS (Root Mean Square) Enerji Hesabı:** Sesi oluşturan dalganın toplam gücünü bulmak için, zaman alanındaki genliklerin karelerinin ortalamasının karekökü alınır. RMS değeri konuşmacının ses şiddetini ve dolayısıyla *Arousal (Duygusal Uyarılmışlık)* seviyesini mikrosaniye bazında belirler.
+  * **Sıfır Geçiş Oranı (ZCR - Zero-Crossing Rate):** Sinyalin zaman ekseninde sıfır (0) noktasını kesme sıklığını hesaplar. Yüksek frekanslı, tiz, gergin veya titreyen sesleri (fricatives) saptamak için proxy bir metrik olarak kullanılır ve kullanıcının anlık stres seviyesine yönelik algoritmik tahminleme yapar.
+
+* **Modelin Eğitimi ve Eşik Optimizasyonu (Calibration & Thresholding):**
+  * **Baseline (Referans Çizgisi) Haritalaması:** Algoritma, standart Android mikrofonlarından (Noise-Cancellation filtrelerinden geçmiş) alınan gerçek dünya insan sesi frekansları temel alınarak normalize edilmiştir.
+  * **Lineer Ağırlıklandırma (Linear Weighting):** Ortalama RMS değerleri 0 ile 100 arasında bir skalaya oturtulmuştur. Model, eşik değerlerini eğitildiği denklemlere göre test eder: Düşük RMS enerjisi düşük aktivasyon (sakinlik/yorgunluk) olarak ağırlıklandırılırken, yüksek RMS enerjisi yüksek aktivasyon (enerjik/öfkeli) olarak saptanır.
+  * **Karar Ağacı Mantığı (Decision Rules):** Dinamik ZCR varyanslarına *penalty (ceza)* veya *reward (ödül)* katsayıları atanarak doğrusal optimizasyon denklemleri yazılmıştır. Örneğin, konuşma sırasında ZCR eğrisi standart sapmanın belirli bir oran üzerine aniden fırladığında (titreyen, çatallı veya aşırı hızlı konuşma saptandığında) model doğrudan "Stres Skoru"nu artırıp, "Pozitiflik Skoru"nu logaritmik olarak düşürür.
+  * Bu sayede arka planda gigabaytlarca yer kaplayan hantal yapay zeka modelleri indirmek yerine; matematiğin ve akustik fiziğin kullanıldığı, %100 Cihaz-İçi (On-Device) çalışan, hızlı, stabil ve tamamen özgün bir makine öğrenimi algoritması geliştirilmiştir.
 
 ### 3. LLM Destekli Dinamik Plan Jenerasyonu (Gemini 1.5 Pro/Flash)
 Verilerden elde edilen *Duygu Skoru*, kullanıcının profil detaylarıyla (Örn: Öğrenci ve Sınav Kaygılı) birleştirilerek **GenerativeModel (Gemini AI)** uç noktasına (endpoint) detaylı bir "Prompt Engineering" (İstem Mühendisliği) algoritmasıyla gönderilir.
