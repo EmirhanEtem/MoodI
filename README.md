@@ -1,4 +1,4 @@
-# WakeMood Planner 🌤️🎵
+# MOODI 🌤️🎵
 
 **Your intelligent morning companion that crafts the perfect day plan and Spotify playlist based on your wake-up mood.**
 
@@ -24,14 +24,14 @@
 
 ## 📖 About The Project
 
-WakeMood Planner is an innovative Android application designed to revolutionize your morning routine. Instead of just giving you a static to-do list, it analyzes *how* you start your day to create a personalized action plan that aligns with your mood and energy levels.
+MOODI is an innovative Android application designed to revolutionize your morning routine. Instead of just giving you a static to-do list, it analyzes *how* you start your day to create a personalized action plan that aligns with your mood and energy levels.
 
 The app intelligently assesses your wake-up state through a combination of factors:
 - The number of times you hit the snooze button.
 - A real-time analysis of your facial expression.
 - A brief voice input about how you're feeling.
 
-Using this data, WakeMood Planner determines your initial mood (e.g., "Energetic & Ready," "Sleepy & Tired," "Grumpy & Stressed"). It then leverages the power of Google's Gemini AI to generate a dynamic, actionable daily plan tailored not only to your mood but also to your profession and specific daily challenges, like an upcoming exam or a project deadline.
+Using this data, MOODI determines your initial mood (e.g., "Energetic & Ready," "Sleepy & Tired," "Grumpy & Stressed"). It then leverages the power of Google's Gemini AI to generate a dynamic, actionable daily plan tailored not only to your mood but also to your profession and specific daily challenges, like an upcoming exam or a project deadline.
 
 The standout feature is its seamless **Spotify integration**. The app can curate a custom music playlist designed to complement your mood, helping you either boost your energy or find calm and focus.
 
