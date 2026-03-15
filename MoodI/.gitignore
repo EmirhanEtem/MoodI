@@ -1,0 +1,27 @@
+# Android Studio tarafından oluşturulan dosyalar
+.gradle/
+.idea/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Yerel yapılandırma dosyaları
+local.properties
+
+# Build çıktıları
+*.apk
+*.aab
+*.ap_
+*.dex
+*.so
+
+# IntelliJ
+*.iml
+
+# Mac
+.DS_Store
+
+# Keystore dosyaları
+*.jks
+*.keystore
