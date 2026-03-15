@@ -29,21 +29,21 @@ graph TD
     classDef db fill:#2962FF,stroke:#fff,stroke-width:2px,color:#fff;
     classDef ui fill:#D50000,stroke:#fff,stroke-width:2px,color:#fff;
 
-    A((Kullanıcı)):::user -->|Kamera Video Akışı| B[ML Kit Yüz Tanıma 👁️]:::ml
-    A -->|Mikrofon Ses Verisi (PCM)| C[Audio Sinyal İşleme 🎙️]:::ml
+    A(("👤 Kullanıcı")):::user -->|"Kamera Video Akışı"| B["ML Kit Yüz Tanıma 👁️"]:::ml
+    A -->|"Mikrofon Ses Verisi PCM"| C["Audio Sinyal İşleme 🎙️"]:::ml
     
-    B -->|Gülümseme & Göz Açıklık Oranı| D{Duygu Vektör Motoru ⚙️}
-    C -->|RMS Enerji & Sıfır Geçiş Oranı| D
+    B -->|"Gülümseme & Göz Açıklık Oranı"| D{"Duygu Vektör Motoru ⚙️"}
+    C -->|"RMS Enerji & Sıfır Geçiş Oranı"| D
     
-    D -->|Valans (Valence) & Uyarılma (Arousal)| E[Gemini 1.5 Flash AI 🧠]:::llm
+    D -->|"Valans (Valence) & Uyarılma (Arousal)"| E["Gemini 1.5 Flash AI 🧠"]:::llm
     
-    E -->|Bağlamsal Çıkarım İstemleri| F[Kişiselleştirilmiş Günlük Plan 📋]
-    E -->|Duyguya Uygun Şarkı Önerileri| G[Spotify Web API 🎵]:::api
+    E -->|"Bağlamsal Çıkarım İstemleri"| F["Kişiselleştirilmiş Günlük Plan 📋"]
+    E -->|"Duyguya Uygun Şarkı Önerileri"| G["Spotify Web API 🎵"]:::api
     
-    F --> H[(Room SQLite Veritabanı)]:::db
-    G -.->|OAuth 2.0 PKCE Kriptolama| I[Private Çalma Listesi]:::api
+    F --> H[("Room SQLite Veritabanı")]:::db
+    G -.->|"OAuth 2.0 PKCE Kriptolama"| I["Private Çalma Listesi"]:::api
     
-    H --> J{{Jetpack Compose Arayüzü 📱}}:::ui
+    H --> J{{"Jetpack Compose Arayüzü 📱"}}:::ui
     I --> J
 ```
 
