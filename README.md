@@ -102,6 +102,7 @@ Uygulamanın çalışabilmesi için `.properties` dosyanızda aşağıdaki anaht
    - Proje kökündeki `local.properties` dosyasına ekleyin: 
      ```properties
      GEMINI_API_KEY=Burdaki_Anahtarinizi_Giriniz
+     SPOTIFY_CLIENT_ID=Burdaki_Anahtarinizi_Giriniz
      ```
 2. **Spotify Developer Web API**
    - [Spotify Dashboard](https://developer.spotify.com/)'a giderek proje oluşturun.
