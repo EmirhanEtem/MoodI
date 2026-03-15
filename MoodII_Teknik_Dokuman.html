@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Moodİİ - Teknik Dokümantasyon</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Noto+Sans:wght@400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 12pt;
+      line-height: 1.8;
+      color: #1a1a1a;
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 25mm 30mm;
+      background: #fff;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Noto Sans', Arial, sans-serif;
+      color: #1a1a2e;
+      margin-top: 1.5em;
+      margin-bottom: 0.6em;
+    }
+
+    h1 {
+      font-size: 22pt;
+      text-align: center;
+      border-bottom: 3px solid #16213e;
+      padding-bottom: 12px;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 16pt;
+      border-bottom: 1.5px solid #0f3460;
+      padding-bottom: 6px;
+      counter-increment: section;
+    }
+
+    h2::before {
+      content: counter(section) ". ";
+    }
+
+    h3 {
+      font-size: 13pt;
+      color: #0f3460;
+      counter-increment: subsection;
+    }
+
+    h3::before {
+      content: counter(section) "." counter(subsection) " ";
+    }
+
+    h2 {
+      counter-reset: subsection;
+    }
+
+    body {
+      counter-reset: section;
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 0.8em;
+      text-indent: 1.5em;
+    }
+
+    .no-indent {
+      text-indent: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #16213e;
+      color: #fff;
+      font-family: 'Noto Sans', sans-serif;
+      font-weight: 600;
+    }
+
+    tr {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    code {
+      font-family: 'Consolas', monospace;
+      background: #f0f0f0;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-size: 10pt;
+    }
+
+    .cover {
+      text-align: center;
+      padding: 60px 0 40px;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .cover h1 {
+      font-size: 28pt;
+      border: none;
+      margin-bottom: 8px;
+    }
+
+    .cover .subtitle {
+      font-size: 16pt;
+      color: #0f3460;
+      margin: 10px 0 30px;
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .cover .meta {
+      font-size: 11pt;
+      color: #555;
+      line-height: 2.2;
+      margin-top: 40px;
+    }
+
+    .cover .meta strong {
+      color: #1a1a2e;
+    }
+
+    .cover .line {
+      width: 60%;
+      height: 2px;
+      background: linear-gradient(90deg, #16213e, #e94560);
+      margin: 30px auto;
+    }
+
+    .toc {
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .toc h2::before {
+      content: "";
+    }
+
+    .toc ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc li {
+      padding: 6px 0;
+      border-bottom: 1px dotted #ccc;
+      font-size: 11pt;
+    }
+
+    .toc li span {
+      float: right;
+      color: #666;
+    }
+
+    ul,
+    ol {
+      margin: 0.5em 0 1em 2em;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    li {
+      margin-bottom: 0.3em;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .diagram {
+      background: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 1em 0;
+      text-align: center;
+      font-family: 'Noto Sans', monospace;
+      font-size: 10pt;
+      white-space: pre-line;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .highlight {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 10px 15px;
+      margin: 1em 0;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 9pt;
+      color: #999;
+      margin-top: 60px;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+
+    /* Başlıkların sonraki içerikten ayrılmasını engelle */
+    h2,
+    h3,
+    h4 {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    /* Her ana bölüm (h2) yeni sayfada başlasın */
+    h2 {
+      page-break-before: always;
+      break-before: page;
+    }
+
+    /* İlk h2 (Giriş ve Motivasyon) için sayfa kırılması yapma — zaten TOC'dan sonra */
+    .toc+h2 {
+      page-break-before: avoid;
+      break-before: avoid;
+    }
+
+    /* Paragrafların ortadan bölünmesini engelle */
+    p {
+      orphans: 3;
+      widows: 3;
+    }
+
+    @media print {
+      body {
+        padding: 15mm 20mm;
+      }
+
+      .cover {
+        page-break-after: always;
+        break-after: page;
+      }
+
+      table {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .diagram {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .highlight {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      ul,
+      ol {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      h2,
+      h3 {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+
+      h2 {
+        page-break-before: always;
+        break-before: page;
+      }
+
+      .toc+h2 {
+        page-break-before: avoid;
+        break-before: avoid;
+      }
+
+      /* Tablo başlığı ile tablo arasında kırılma olmasın */
+      h3+table {
+        page-break-before: avoid;
+        break-before: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cover">
+    <h1>Moodİİ</h1>
+    <div class="subtitle">Yapay Zeka Destekli Sabah Ruh Hali Analizörü ve<br>Kişiselleştirilmiş Günlük Planlayıcı</div>
+    <div class="line"></div>
+    <p class="no-indent" style="font-size:13pt; color:#333; text-align:center;">
+      Android Mobil Uygulama — Teknik Dokümantasyon Raporu
+    </p>
+    <div class="meta">
+      <strong>Proje Adı:</strong> Moodİİ<br>
+      <strong>Uygulama Kimliği:</strong> com.example.mood<br>
+      <strong>Platform:</strong> Android (API 26–35)<br>
+      <strong>Programlama Dili:</strong> Kotlin<br>
+      <strong>Arayüz Çatısı:</strong> Jetpack Compose (Material 3)<br>
+      <strong>Yapay Zeka Motoru:</strong> Google Gemini 2.0 Flash<br>
+      <strong>Sürüm:</strong> 1.0<br>
+      <strong>Tarih:</strong> Mart 2026
+    </div>
+  </div>
+
+  <!-- İÇİNDEKİLER -->
+  <div class="toc">
+    <h2>İçindekiler</h2>
+    <ul>
+      <li>1. Giriş ve Motivasyon</li>
+      <li>2. Problemin Tanımı ve Amaç</li>
+      <li>3. Sistem Mimarisi ve Tasarım Kararları</li>
+      <li>4. Kullanılan Teknolojiler ve Kütüphaneler</li>
+      <li>5. Uygulama Modülleri ve Bileşen Analizi</li>
+      <li>6. Ruh Hali Analiz Algoritması</li>
+      <li>7. Yapay Zeka Entegrasyonu (Google Gemini)</li>
+      <li>8. Spotify Entegrasyonu ve OAuth 2.0 PKCE</li>
+      <li>9. Yüz Algılama ve Kamera Sistemi</li>
+      <li>10. Kullanıcı Arayüzü ve Ekran Akışı</li>
+      <li>11. Veri Modelleri ve Durum Yönetimi</li>
+      <li>12. Kurulum ve Yapılandırma Kılavuzu</li>
+      <li>13. Güvenlik Değerlendirmesi</li>
+      <li>14. Gelecek Geliştirmeler ve Yol Haritası</li>
+      <li>15. Sonuç</li>
+      <li>16. Kaynaklar</li>
+    </ul>
+  </div>
+
+  <!-- BÖLÜM 1 -->
+  <h2>Giriş ve Motivasyon</h2>
+  <p>Günümüzde bireysel verimlilik ve kişisel refah, modern yaşamın en kritik unsurlarından birini oluşturmaktadır.
+    Özellikle sabah saatlerindeki ruh hali, bireyin gün boyu performansını, karar verme yeteneğini ve sosyal
+    etkileşimlerini doğrudan etkileyen bir faktördür. Araştırmalar, güne pozitif bir başlangıç yapan bireylerin gün
+    boyunca daha yüksek üretkenlik ve memnuniyet seviyeleri sergilediğini göstermektedir.</p>
+  <p>Moodİİ, bu bilimsel temelden yola çıkarak geliştirilmiş bir Android mobil uygulamasıdır.
+    Uygulama, kullanıcının sabahki ruh halini çoklu giriş kanallarıyla (yüz ifadesi analizi, sesli giriş, alarm erteleme
+    verisi) analiz ederek, yapay zeka destekli kişiselleştirilmiş günlük eylem planları oluşturur. Bu yaklaşım,
+    geleneksel planlama uygulamalarından farklı olarak, bireyin o andaki psikolojik durumunu dikkate alan adaptif bir
+    planlama deneyimi sunar.</p>
+  <p>Projenin geliştirilmesindeki temel motivasyon, makine öğrenmesi, yapay zeka ve üçüncü parti API entegrasyonlarını
+    bir mobil uygulama bağlamında birleştirerek, kullanıcıya somut ve uygulanabilir bir fayda sunmaktır.</p>
+
+  <!-- BÖLÜM 2 -->
+  <h2>Problemin Tanımı ve Amaç</h2>
+  <p>Mevcut günlük planlama uygulamaları genellikle statik yapıdadır ve kullanıcının anlık duygusal durumunu göz ardı
+    eder. Bir kullanıcı sabah yorgun ve stresli uyandığında, yoğun bir görev listesiyle karşılaşmak motivasyonu daha da
+    düşürebilir. Bunun tersi olarak, enerjik uyanan bir kullanıcıya hafif görevler önermek potansiyeli israf etmek
+    demektir.</p>
+  <p>Moodİİ uygulaması şu temel soruları çözmeyi amaçlamaktadır:</p>
+  <ul>
+    <li>Sabahki ruh hali, güvenilir bir şekilde ve minimum kullanıcı eforuyla nasıl ölçülebilir?</li>
+    <li>Ölçülen ruh hali, meslek ve bağlamsal bilgiyle birleştirilerek nasıl anlamlı bir günlük plana dönüştürülebilir?
+    </li>
+    <li>Müzik terapisinin iyi bilinen etkileri, otomatik çalma listesi oluşturma yoluyla plana nasıl entegre edilebilir?
+    </li>
+  </ul>
+
+  <!-- BÖLÜM 3 -->
+  <h2>Sistem Mimarisi ve Tasarım Kararları</h2>
+
+  <h3>Mimari Desen: MVVM</h3>
+  <p>Uygulama, Android geliştirmede endüstri standardı olan <strong>Model-View-ViewModel (MVVM)</strong> mimari desenini
+    benimser. Bu yaklaşım, iş mantığının (ViewModel) arayüz katmanından (View/Compose) ayrılmasını sağlayarak, test
+    edilebilirlik ve bakım kolaylığını artırır.</p>
+
+  <h3>Tek Activity Mimarisi</h3>
+  <p>Modern Android geliştirme pratiklerine uygun olarak, uygulama tek bir <code>MainActivity</code> üzerinden çalışır.
+    Tüm ekranlar Jetpack Compose <code>@Composable</code> fonksiyonları olarak tanımlanmış olup, ekranlar arası geçiş
+    <code>AnimatedContent</code> ile sağlanmaktadır. Navigasyon durumu, <code>Screen</code> enum sınıfı ve
+    <code>StateFlow</code> mekanizması üzerinden yönetilmektedir.
+  </p>
+
+  <h3>Bileşen Etkileşim Diyagramı</h3>
+  <div class="diagram">
+    ┌──────────────────────────────────────────────────────┐
+    │ MainActivity │
+    │ ┌────────────────┐ ┌──────────────────────────┐ │
+    │ │ Spotify OAuth │ │ Jetpack Compose UI │ │
+    │ │ Launcher │ │ (10 Ekran) │ │
+    │ └───────┬────────┘ └──────────┬───────────────┘ │
+    │ │ │ │
+    │ ▼ ▼ │
+    │ ┌─────────────────────────────────────────────────┐ │
+    │ │ MoodPlannerViewModel │ │
+    │ │ ┌──────────┐ ┌──────────┐ ┌────────────────┐ │ │
+    │ │ │ Ruh Hali │ │ Gemini │ │ Spotify API │ │ │
+    │ │ │ Algoritma│ │ AI Motor │ │ İstemci │ │ │
+    │ │ └──────────┘ └──────────┘ └────────────────┘ │ │
+    │ └─────────────────────────────────────────────────┘ │
+    │ ▲ ▲ │
+    │ ┌───────┴─────────┐ ┌─────────┴───────────────┐ │
+    │ │ CameraX + │ │ Speech Recognizer │ │
+    │ │ ML Kit Face Det.│ │ (Türkçe) │ │
+    │ └─────────────────┘ └─────────────────────────┘ │
+    └──────────────────────────────────────────────────────┘
+  </div>
+
+  <!-- BÖLÜM 4 -->
+  <h2>Kullanılan Teknolojiler ve Kütüphaneler</h2>
+  <table>
+    <tr>
+      <th>Kategori</th>
+      <th>Teknoloji</th>
+      <th>Sürüm</th>
+      <th>Kullanım Amacı</th>
+    </tr>
+    <tr>
+      <td>Dil</td>
+      <td>Kotlin</td>
+      <td>—</td>
+      <td>Ana programlama dili</td>
+    </tr>
+    <tr>
+      <td>Arayüz</td>
+      <td>Jetpack Compose</td>
+      <td>BOM 2024.04.01</td>
+      <td>Deklaratif UI çatısı</td>
+    </tr>
+    <tr>
+      <td>Tasarım</td>
+      <td>Material 3</td>
+      <td>—</td>
+      <td>Material Design 3 bileşenleri</td>
+    </tr>
+    <tr>
+      <td>Yapay Zeka</td>
+      <td>Google Generative AI</td>
+      <td>0.3.0</td>
+      <td>Gemini 2.0 Flash model entegrasyonu</td>
+    </tr>
+    <tr>
+      <td>Yüz Algılama</td>
+      <td>ML Kit Face Detection</td>
+      <td>16.1.7</td>
+      <td>Gerçek zamanlı yüz ve gülümseme tespiti</td>
+    </tr>
+    <tr>
+      <td>Kamera</td>
+      <td>CameraX</td>
+      <td>1.1.0</td>
+      <td>Kamera yaşam döngüsü yönetimi</td>
+    </tr>
+    <tr>
+      <td>OAuth</td>
+      <td>AppAuth (OpenID)</td>
+      <td>0.11.1</td>
+      <td>Spotify PKCE OAuth 2.0 akışı</td>
+    </tr>
+    <tr>
+      <td>JSON</td>
+      <td>Gson</td>
+      <td>2.10.1</td>
+      <td>JSON serileştirme/deserileştirme</td>
+    </tr>
+    <tr>
+      <td>Yaşam Döngüsü</td>
+      <td>Lifecycle Runtime Compose</td>
+      <td>2.9.0</td>
+      <td>Compose yaşam döngüsü entegrasyonu</td>
+    </tr>
+    <tr>
+      <td>ViewModel</td>
+      <td>ViewModel Compose</td>
+      <td>2.8.0</td>
+      <td>Compose ViewModel entegrasyonu</td>
+    </tr>
+    <tr>
+      <td>Konuşma</td>
+      <td>Android Speech API</td>
+      <td>Yerleşik</td>
+      <td>Türkçe konuşma tanıma</td>
+    </tr>
+    <tr>
+      <td>TTS</td>
+      <td>Android TextToSpeech</td>
+      <td>Yerleşik</td>
+      <td>Gülümseme tespitinde sesli geri bildirim</td>
+    </tr>
+  </table>
+
+  <!-- BÖLÜM 5 -->
+  <h2>Uygulama Modülleri ve Bileşen Analizi</h2>
+  <p>Uygulama, toplam 18 Kotlin kaynak dosyasından oluşmaktadır. Bu dosyalar işlevlerine göre aşağıdaki şekilde
+    kategorize edilebilir:</p>
+
+  <h3>Çekirdek Bileşenler</h3>
+  <table>
+    <tr>
+      <th>Dosya</th>
+      <th>Satır Sayısı</th>
+      <th>Sorumluluk</th>
+    </tr>
+    <tr>
+      <td><code>MainActivity.kt</code></td>
+      <td>629</td>
+      <td>Uygulama giriş noktası, 10+ Composable ekran, Spotify auth yönetimi, navigasyon barındırıcı</td>
+    </tr>
+    <tr>
+      <td><code>MoodPlannerViewModel.kt</code></td>
+      <td>578</td>
+      <td>Merkezi iş mantığı: ruh hali algoritması, Gemini AI çağrıları, Spotify API istemcisi, durum yönetimi</td>
+    </tr>
+    <tr>
+      <td><code>CameraPreview.kt</code></td>
+      <td>101</td>
+      <td>CameraX-Compose köprüsü, ön kamera bağlama, <code>AndroidView</code> entegrasyonu</td>
+    </tr>
+    <tr>
+      <td><code>FaceAnalyzer.kt</code></td>
+      <td>129</td>
+      <td>ML Kit yüz algılama işlemcisi, gülümseme eşik kontrolü, TTS geri bildirim, yüz görüntüsü kaydetme</td>
+    </tr>
+    <tr>
+      <td><code>FaceOverlay.kt</code></td>
+      <td>97</td>
+      <td>Canvas tabanlı yüz kontur ve referans noktası çizimi, ön kamera ayna düzeltmesi</td>
+    </tr>
+    <tr>
+      <td><code>SpotifyAuthManager.kt</code></td>
+      <td>121</td>
+      <td>Spotify OAuth 2.0 PKCE akış yönetimi, token değişimi</td>
+    </tr>
+  </table>
+
+  <h3>Veri Modelleri</h3>
+  <table>
+    <tr>
+      <th>Dosya</th>
+      <th>Açıklama</th>
+    </tr>
+    <tr>
+      <td><code>WakeMood.kt</code></td>
+      <td>Dört ruh hali kategorisini tanımlayan enum sınıfı</td>
+    </tr>
+    <tr>
+      <td><code>Screen.kt</code></td>
+      <td>10 navigasyon durumunu tanımlayan enum sınıfı</td>
+    </tr>
+    <tr>
+      <td><code>TaskItem.kt</code></td>
+      <td>Görev kartı veri modeli (başlık, alt görevler, Spotify bağlantısı, zorluk, süre)</td>
+    </tr>
+    <tr>
+      <td><code>ExamDetail.kt</code></td>
+      <td>Öğrenci sınav bilgisi veri modeli</td>
+    </tr>
+    <tr>
+      <td><code>User.kt</code></td>
+      <td>Kapsamlı kullanıcı profil veri modeli (meslek, Spotify tokenları, tüm meslek detayları)</td>
+    </tr>
+  </table>
+
+  <!-- BÖLÜM 6 -->
+  <h2>Ruh Hali Analiz Algoritması</h2>
+  <p>Uygulamanın merkezi değer önerisini oluşturan ruh hali belirleme algoritması, üç farklı giriş kaynağından toplanan
+    verileri birleştiren bir puanlama sistemi kullanır. <code>determineWakeMood()</code> fonksiyonu aşağıdaki mantıkla
+    çalışır:</p>
+
+  <h3>Puanlama Kuralları</h3>
+  <table>
+    <tr>
+      <th>Giriş Kaynağı</th>
+      <th>Koşul</th>
+      <th>Puan</th>
+    </tr>
+    <tr>
+      <td rowspan="3">Gülümseme Olasılığı</td>
+      <td>&gt; 0.65</td>
+      <td>+2</td>
+    </tr>
+    <tr>
+      <td>0.35 – 0.65</td>
+      <td>+1</td>
+    </tr>
+    <tr>
+      <td>&lt; 0.15 (yüz taranmışsa)</td>
+      <td>−1</td>
+    </tr>
+    <tr>
+      <td rowspan="3">Alarm Erteleme</td>
+      <td>0 kez</td>
+      <td>+1</td>
+    </tr>
+    <tr>
+      <td>1–2 kez</td>
+      <td>−1</td>
+    </tr>
+    <tr>
+      <td>≥ 3 kez</td>
+      <td>−2</td>
+    </tr>
+    <tr>
+      <td rowspan="4">Sesli Giriş Anahtar Kelimeleri</td>
+      <td>"harika", "mükemmel", "süper"</td>
+      <td>+2</td>
+    </tr>
+    <tr>
+      <td>"iyiyim", "fena değil", "normal"</td>
+      <td>+1</td>
+    </tr>
+    <tr>
+      <td>"sinirliyim", "stresliyim", "gerginim"</td>
+      <td>−1</td>
+    </tr>
+    <tr>
+      <td>"yorgunum", "kötüyüm", "berbat"</td>
+      <td>−2</td>
+    </tr>
+  </table>
+
+  <h3>Eşleme Kuralları</h3>
+  <table>
+    <tr>
+      <th>Toplam Puan</th>
+      <th>Sonuç Ruh Hali</th>
+    </tr>
+    <tr>
+      <td>≥ 3</td>
+      <td>ENERGETIC_READY (Enerjik)</td>
+    </tr>
+    <tr>
+      <td>≤ −2</td>
+      <td>SLEEPY_TIRED (Uykulu)</td>
+    </tr>
+    <tr>
+      <td>≤ 0 ve erteleme ≥ 2, veya stresli anahtar kelimeler</td>
+      <td>GRUMPY_STRESSED (Stresli)</td>
+    </tr>
+    <tr>
+      <td>Diğer</td>
+      <td>NEUTRAL (Nötr)</td>
+    </tr>
+  </table>
+
+  <!-- BÖLÜM 7 -->
+  <h2>Yapay Zeka Entegrasyonu (Google Gemini)</h2>
+  <p>Uygulama, Google'ın Gemini 2.0 Flash modelini kullanarak iki farklı amaçla yapay zeka çağrıları gerçekleştirir:</p>
+
+  <h3>Günlük Plan Üretimi</h3>
+  <p><code>buildGeminiPrompt()</code> fonksiyonu, kullanıcı profilini içeren kapsamlı bir prompt oluşturur. Bu prompt şu
+    bilgileri içerir: ruh hali kategorisi ve açıklaması, alarm erteleme sayısı, gülümseme olasılığı yüzdesi, sesli giriş
+    metni, meslek ve mesleğe özel bağlam (sınav takvimi, proje teslim tarihi vb.), günün adı ve saati. Model, 4–6 adet
+    ana görev başlığı döndürür. Her başlık, tıklandığında ikinci bir Gemini çağrısıyla detaylandırılabilir.</p>
+
+  <h3>Şarkı Önerisi Üretimi</h3>
+  <p><code>buildGeminiPromptForSongs()</code> fonksiyonu, ruh haline ve istenen süreye uygun şarkı önerileri talep eder.
+    Yanıt "Şarkı Adı - Sanatçı Adı" formatında ayrıştırılarak Spotify aramasına girdi olarak kullanılır.</p>
+
+  <h3>Model Yapılandırması</h3>
+  <table>
+    <tr>
+      <th>Parametre</th>
+      <th>Değer</th>
+    </tr>
+    <tr>
+      <td>Model</td>
+      <td>gemini-2.0-flash</td>
+    </tr>
+    <tr>
+      <td>Sıcaklık (Temperature)</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <td>Top-K</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Top-P</td>
+      <td>0.95</td>
+    </tr>
+    <tr>
+      <td>Maksimum Çıktı Token</td>
+      <td>4096</td>
+    </tr>
+    <tr>
+      <td>Güvenlik Ayarları</td>
+      <td>Tüm kategorilerde MEDIUM_AND_ABOVE</td>
+    </tr>
+  </table>
+
+  <!-- BÖLÜM 8 -->
+  <h2>Spotify Entegrasyonu ve OAuth 2.0 PKCE</h2>
+  <p>Uygulama, Spotify Web API ile etkileşim kurmak için OAuth 2.0 Authorization Code Flow with PKCE (Proof Key for Code
+    Exchange) protokolünü kullanır. Bu yöntem, client secret gerektirmeden güvenli kimlik doğrulaması sağlar ve mobil
+    uygulamalar için önerilen yaklaşımdır.</p>
+
+  <h3>Kimlik Doğrulama Akışı</h3>
+  <ol>
+    <li><strong>PKCE Hazırlığı:</strong> 64 baytlık rastgele <code>code_verifier</code> üretimi, SHA-256 hash ile
+      <code>code_challenge</code> oluşturma
+    </li>
+    <li><strong>Yetkilendirme İsteği:</strong> AppAuth kütüphanesi ile Spotify'ın yetkilendirme sayfasına yönlendirme
+    </li>
+    <li><strong>Callback İşleme:</strong> <code>com.example.mood://spotify-login-callback</code> URI'si üzerinden dönüş
+    </li>
+    <li><strong>Token Değişimi:</strong> Authorization code'un access token ile değiştirilmesi</li>
+  </ol>
+
+  <h3>Spotify API İşlemleri</h3>
+  <table>
+    <tr>
+      <th>İşlem</th>
+      <th>Endpoint</th>
+      <th>Metod</th>
+    </tr>
+    <tr>
+      <td>Kullanıcı ID Alma</td>
+      <td><code>/v1/me</code></td>
+      <td>GET</td>
+    </tr>
+    <tr>
+      <td>Şarkı Arama</td>
+      <td><code>/v1/search</code></td>
+      <td>GET</td>
+    </tr>
+    <tr>
+      <td>Çalma Listesi Oluşturma</td>
+      <td><code>/v1/users/{id}/playlists</code></td>
+      <td>POST</td>
+    </tr>
+    <tr>
+      <td>Şarkı Ekleme</td>
+      <td><code>/v1/playlists/{id}/tracks</code></td>
+      <td>POST</td>
+    </tr>
+  </table>
+
+  <h3>İstenen İzinler (Scope)</h3>
+  <p class="no-indent"><code>streaming</code>, <code>user-read-email</code>, <code>user-read-private</code>,
+    <code>playlist-read-private</code>, <code>playlist-modify-public</code>, <code>playlist-modify-private</code>,
+    <code>user-modify-playback-state</code>, <code>user-read-playback-state</code>
+  </p>
+
+  <!-- BÖLÜM 9 -->
+  <h2>Yüz Algılama ve Kamera Sistemi</h2>
+  <p>Yüz algılama sistemi üç ana bileşenden oluşur ve CameraX → FaceAnalyzer → FaceOverlay şeklinde veri akışı sağlar.
+  </p>
+
+  <h3>CameraX Yapılandırması</h3>
+  <p><code>CameraPreview.kt</code>, Jetpack Compose ile CameraX arasında köprü kurar. <code>AndroidView</code>
+    kullanılarak <code>PreviewView</code> oluşturulur, ön kamera (<code>DEFAULT_FRONT_CAMERA</code>) seçilir ve
+    <code>ImageAnalysis</code> use case'i <code>STRATEGY_KEEP_ONLY_LATEST</code> stratejisiyle yapılandırılır.
+  </p>
+
+  <h3>ML Kit Face Detection</h3>
+  <p><code>FaceAnalyzer.kt</code>, <code>ImageAnalysis.Analyzer</code> arayüzünü uygular. Algılayıcı şu seçeneklerle
+    yapılandırılmıştır: hızlı performans modu, tüm referans noktaları ve konturlar etkin, sınıflandırma modu
+    (gülümseme/göz açıklığı) etkin, yüz takibi etkin. Gülümseme olasılığı %70'i aştığında TextToSpeech ile "Gülümsüyor"
+    sesli geri bildirimi verilir ve yüz görüntüsü JPEG olarak önbelleğe kaydedilir.</p>
+
+  <h3>Yüz Çizimi (FaceOverlay)</h3>
+  <p><code>FaceOverlay.kt</code>, Compose <code>Canvas</code> üzerinde algılanan yüzlerin konturlarını (15 farklı kontur
+    tipi) ve referans noktalarını çizer. Ön kama ayna düzeltmesi, ölçek hesaplaması ve görüntü-ekran koordinat dönüşümü
+    bu bileşende gerçekleştirilir.</p>
+
+  <!-- BÖLÜM 10 -->
+  <h2>Kullanıcı Arayüzü ve Ekran Akışı</h2>
+  <p>Uygulama, 10 farklı ekrandan oluşan bir navigasyon akışına sahiptir:</p>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Ekran</th>
+      <th>Açıklama</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>LOGIN</td>
+      <td>Kullanıcı adı/şifre ile giriş</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>PROFESSION_SELECTION</td>
+      <td>Meslek seçimi (6 seçenek)</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>STUDENT_EXAM_PROMPT</td>
+      <td>Öğrenci: Sınav var mı sorusu</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>STUDENT_EXAM_INPUT</td>
+      <td>Öğrenci: Sınav takvimi girişi</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>PROFESSION_DETAIL_PROMPT</td>
+      <td>Diğer meslekler: Özel durum sorusu</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>PROFESSION_DETAIL_INPUT</td>
+      <td>Diğer meslekler: Detay girişi</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>MAIN_ANALYSIS</td>
+      <td>Ana analiz (kamera, ses, alarm erteleme)</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>MOOD_CONFIRMATION</td>
+      <td>Tespit edilen ruh halinin kullanıcı onayı</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>PLAN_DISPLAY</td>
+      <td>AI tarafından oluşturulan günlük plan görüntüleme</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>SPOTIFY_PLAYLIST_DURATION</td>
+      <td>Çalma listesi süre tercihi</td>
+    </tr>
+  </table>
+  <p>Tüm ekranlar <code>AnimatedContent</code> ile geçiş animasyonları içerir. Geri navigasyonu, mevcut ekrana ve
+    kullanıcı durumuna göre bağlama duyarlı şekilde çalışır.</p>
+
+  <!-- BÖLÜM 11 -->
+  <h2>Veri Modelleri ve Durum Yönetimi</h2>
+  <p>Uygulama, Kotlin <code>StateFlow</code> ve Compose <code>mutableStateOf</code> mekanizmalarını birlikte kullanarak
+    reaktif durum yönetimi sağlar. ViewModel'deki tüm kullanıcı girişleri ve uygulama durumları bu mekanizmalar
+    aracılığıyla arayüzle senkronize edilir.</p>
+
+  <h3>Temel Veri Sınıfları</h3>
+  <ul>
+    <li><strong>WakeMood:</strong> 4 ruh hali kategorisi (ENERGETIC_READY, SLEEPY_TIRED, GRUMPY_STRESSED, NEUTRAL)</li>
+    <li><strong>TaskItem:</strong> Görev kartı (id, başlık, tamamlanma durumu, alt görevler, zorluk, tahmini süre,
+      Spotify bilgileri)</li>
+    <li><strong>ExamDetail:</strong> Sınav bilgisi (id, ders adı, sınav tarihi)</li>
+    <li><strong>User:</strong> Kapsamlı kullanıcı profili (kullanıcı adı, şifre hash'i, meslek, tüm meslek detayları,
+      Spotify tokenları)</li>
+    <li><strong>FaceGraphicInfo:</strong> Yüz algılama verisi (algılanan yüzler, görüntü boyutları, kamera yönü)</li>
+  </ul>
+
+  <!-- BÖLÜM 12 -->
+  <h2>Kurulum ve Yapılandırma Kılavuzu</h2>
+
+  <h3>Ön Gereksinimler</h3>
+  <ul>
+    <li>Android Studio Ladybug (2024.2+) veya üzeri</li>
+    <li>Android SDK 26+ (minimum), 34+ (hedef), compileSdk 35</li>
+    <li>JDK 1.8</li>
+    <li>Google Gemini API Anahtarı</li>
+    <li>Spotify Developer Uygulaması</li>
+  </ul>
+
+  <h3>API Yapılandırması</h3>
+  <p class="no-indent"><strong>1. Gemini API Anahtarı:</strong> Proje kök dizinindeki <code>local.properties</code>
+    dosyasına <code>GEMINI_API_KEY=anahtarınız</code> satırını ekleyin. Bu anahtar, derleme sırasında
+    <code>BuildConfig.GEMINI_API_KEY</code> alanına otomatik olarak enjekte edilir.
+  </p>
+  <p class="no-indent"><strong>2. Spotify Client ID:</strong> <code>MainActivity.kt</code> içindeki
+    <code>SpotifyAuthHelper.SPOTIFY_CLIENT_ID</code> sabitini kendi Client ID'nizle güncelleyin. Spotify Developer
+    Dashboard'da yönlendirme URI'sı olarak <code>com.example.mood://spotify-login-callback</code> adresini ekleyin.
+  </p>
+
+  <h3>Gerekli Sistem İzinleri</h3>
+  <table>
+    <tr>
+      <th>İzin</th>
+      <th>Kullanım Amacı</th>
+    </tr>
+    <tr>
+      <td>CAMERA</td>
+      <td>Yüz ifadesi tarama</td>
+    </tr>
+    <tr>
+      <td>RECORD_AUDIO</td>
+      <td>Sesli ruh hali girişi</td>
+    </tr>
+    <tr>
+      <td>INTERNET</td>
+      <td>Gemini AI ve Spotify API çağrıları</td>
+    </tr>
+  </table>
+
+  <!-- BÖLÜM 13 -->
+  <h2>Güvenlik Değerlendirmesi</h2>
+  <p>Uygulamanın güvenlik mimarisi şu yönleriyle değerlendirilebilir:</p>
+  <ul>
+    <li><strong>OAuth 2.0 PKCE:</strong> Spotify kimlik doğrulaması, client secret gerektirmeyen PKCE yöntemiyle
+      gerçekleştirilir. Bu, mobil uygulamalar için en güvenli OAuth akışıdır.</li>
+    <li><strong>API Anahtarı Yönetimi:</strong> Gemini API anahtarı, <code>local.properties</code> dosyasında saklanır
+      ve <code>.gitignore</code> ile versiyon kontrolünden çıkarılmıştır. Anahtar, derleme zamanında
+      <code>BuildConfig</code> aracılığıyla enjekte edilir.
+    </li>
+    <li><strong>Veri Gizliliği:</strong> Yüz görüntüleri yalnızca cihazın önbellek dizininde saklanır. Sesli giriş
+      verileri sunucuya iletilmez.</li>
+  </ul>
+  <div class="highlight">
+    <strong>Geliştirme Notu:</strong> Mevcut sürümde kullanıcı şifreleri hash'lenmeden saklanmaktadır (User modeli
+    <code>hashedPassword</code> alanı içerir ancak hash fonksiyonu uygulanmamıştır). Üretim sürümü için bcrypt veya
+    Argon2 gibi güvenli hash algoritmaları uygulanmalıdır.
+  </div>
+
+  <!-- BÖLÜM 14 -->
+  <h2>Gelecek Geliştirmeler ve Yol Haritası</h2>
+  <table>
+    <tr>
+      <th>Öncelik</th>
+      <th>Geliştirme</th>
+      <th>Açıklama</th>
+    </tr>
+    <tr>
+      <td>Yüksek</td>
+      <td>Room Veritabanı</td>
+      <td>Kullanıcı verilerinin, geçmiş planların ve ruh hali geçmişinin kalıcı olarak saklanması</td>
+    </tr>
+    <tr>
+      <td>Yüksek</td>
+      <td>Spotify Token Yenileme</td>
+      <td>Refresh token ile otomatik access token yenileme mekanizması</td>
+    </tr>
+    <tr>
+      <td>Orta</td>
+      <td>Ruh Hali Analitiği</td>
+      <td>Geçmiş ruh hali verilerinin grafiksel analizi ve trend tespiti</td>
+    </tr>
+    <tr>
+      <td>Orta</td>
+      <td>Bildirim Sistemi</td>
+      <td>Planlanan görevler için zamanlı hatırlatıcılar</td>
+    </tr>
+    <tr>
+      <td>Orta</td>
+      <td>Şifre Güvenliği</td>
+      <td>Güvenli hash algoritmaları ve biyometrik kimlik doğrulama</td>
+    </tr>
+    <tr>
+      <td>Düşük</td>
+      <td>Çoklu Dil Desteği</td>
+      <td>İngilizce ve diğer diller için lokalizasyon</td>
+    </tr>
+    <tr>
+      <td>Düşük</td>
+      <td>Widget Desteği</td>
+      <td>Ana ekran widget'ı ile hızlı ruh hali girişi</td>
+    </tr>
+  </table>
+
+  <!-- BÖLÜM 15 -->
+  <h2>Sonuç</h2>
+  <p>Moodİİ, modern Android geliştirme teknolojilerini (Kotlin, Jetpack Compose, MVVM), yapay zeka
+    teknolojilerini (Google Gemini, ML Kit) ve üçüncü parti API entegrasyonlarını (Spotify OAuth) bir araya getiren
+    kapsamlı bir mobil uygulamadır.</p>
+  <p>Uygulamanın temel yeniliği, kullanıcının sabahki ruh halini çoklu sensör ve girdi kanallarıyla analiz ederek, bu
+    bilgiyi mesleğe özel bağlamla birleştirip yapay zeka aracılığıyla kişiselleştirilmiş eylem planlarına
+    dönüştürmesidir. Spotify entegrasyonu, müzik terapisinin bilinen etkilerini otomatik çalma listesi oluşturma yoluyla
+    plana dahil ederek kullanıcı deneyimini zenginleştirir.</p>
+  <p>Proje, toplam 18 kaynak dosya ve yaklaşık 2.000 satır Kotlin kodundan oluşmakta olup, modüler yapısı ve temiz
+    mimari tasarımı sayesinde gelecek geliştirmelere açık bir temel sunmaktadır.</p>
+
+  <!-- BÖLÜM 16 -->
+  <h2>Kaynaklar</h2>
+  <ol>
+    <li>Android Developers. (2024). <em>Jetpack Compose</em>. https://developer.android.com/compose</li>
+    <li>Google AI. (2024). <em>Gemini API Documentation</em>. https://ai.google.dev/docs</li>
+    <li>Google ML Kit. (2024). <em>Face Detection API</em>. https://developers.google.com/ml-kit/vision/face-detection
+    </li>
+    <li>Android Developers. (2024). <em>CameraX Overview</em>. https://developer.android.com/media/camera/camerax</li>
+    <li>Spotify for Developers. (2024). <em>Web API Reference</em>. https://developer.spotify.com/documentation/web-api
+    </li>
+    <li>OpenID Foundation. (2024). <em>AppAuth for Android</em>. https://github.com/openid/AppAuth-Android</li>
+    <li>Android Developers. (2024). <em>Guide to App Architecture</em>. https://developer.android.com/topic/architecture
+    </li>
+    <li>Kotlin Documentation. (2024). <em>Coroutines Guide</em>. https://kotlinlang.org/docs/coroutines-guide.html</li>
+  </ol>
+
+  <div class="footer">
+    Moodİİ — Teknik Dokümantasyon Raporu • Sürüm 1.0 • Mart 2026
+  </div>
+
+</body>
+
+</html>
