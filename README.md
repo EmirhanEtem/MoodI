@@ -16,6 +16,39 @@ Klasik "to-do" (yapılacaklar) uygulamalarından farklı olarak Moodİ; kullanı
 
 ---
 
+## 🏛️ Sistem Mimarisi ve Algoritma Akışı
+
+Aşağıdaki şema, uygulamanın kamera ve mikrofondan aldığı işlenmemiş (raw) verileri nasıl anlamlı bir yaşam planına ve müzik listesine çevirdiğini (Pipeline) göstermektedir:
+
+```mermaid
+graph TD
+    classDef user fill:#6200EA,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef ml fill:#00C853,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef llm fill:#FF6D00,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef api fill:#1DB954,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef db fill:#2962FF,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef ui fill:#D50000,stroke:#fff,stroke-width:2px,color:#fff;
+
+    A((Kullanıcı)):::user -->|Kamera Video Akışı| B[ML Kit Yüz Tanıma 👁️]:::ml
+    A -->|Mikrofon Ses Verisi (PCM)| C[Audio Sinyal İşleme 🎙️]:::ml
+    
+    B -->|Gülümseme & Göz Açıklık Oranı| D{Duygu Vektör Motoru ⚙️}
+    C -->|RMS Enerji & Sıfır Geçiş Oranı| D
+    
+    D -->|Valans (Valence) & Uyarılma (Arousal)| E[Gemini 1.5 Flash AI 🧠]:::llm
+    
+    E -->|Bağlamsal Çıkarım İstemleri| F[Kişiselleştirilmiş Günlük Plan 📋]
+    E -->|Duyguya Uygun Şarkı Önerileri| G[Spotify Web API 🎵]:::api
+    
+    F --> H[(Room SQLite Veritabanı)]:::db
+    G -.->|OAuth 2.0 PKCE Kriptolama| I[Private Çalma Listesi]:::api
+    
+    H --> J{{Jetpack Compose Arayüzü 📱}}:::ui
+    I --> J
+```
+
+---
+
 ## 🔬 Çekirdek Teknolojiler ve Algoritmik Altyapı
 
 Mimari sistem, kullanıcının "Ruh Hali (Mood)" tespiti ve "Plan Jenerasyonu (Plan Generation)" olmak üzere iki ana analitik motordan oluşmaktadır.
