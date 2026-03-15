@@ -13,7 +13,7 @@ import java.util.Base64
 object SpotifyAuthManager {
 
     // Spotify Developer Dashboard'dan alacağın bilgiler
-    private const val SPOTIFY_CLIENT_ID = "Client_Id" // Kendi Client ID'ni ekle
+    private const val SPOTIFY_CLIENT_ID = "SPOTIFY_CLIENT_ID" // Kendi Client ID'ni ekle
     private const val SPOTIFY_REDIRECT_URI = "com.example.mood://spotify-login-callback" // TODO: Kendi Redirect URI'ını ekle
     private const val SPOTIFY_AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     private const val SPOTIFY_TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token"
